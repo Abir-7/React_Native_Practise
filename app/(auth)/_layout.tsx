@@ -9,9 +9,10 @@ export default function AuthLayout() {
   //   return <Redirect href={"/login"} />;
   // }
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="chat" options={{ headerShown: false }} />
+      <Stack.Screen name="editProfile" options={{ headerShown: false }} />
     </Stack>
   );
 }

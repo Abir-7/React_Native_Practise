@@ -4,13 +4,22 @@ import { FontAwesome } from "@expo/vector-icons"; // Import FontAwesome icons
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Chats",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="home" size={size} color={color} /> // Home icon
+            <FontAwesome name="comment" size={size} color={color} /> // Home icon
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="group"
+        options={{
+          title: "Groups",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="group" size={size} color={color} /> // Profile icon
           ),
         }}
       />

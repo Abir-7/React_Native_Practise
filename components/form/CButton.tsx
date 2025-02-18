@@ -1,3 +1,4 @@
+import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 import React, { useState } from "react";
 import { FieldValues, useFormContext } from "react-hook-form";
 import { Pressable, Text, StyleSheet } from "react-native";
@@ -28,7 +29,7 @@ export const CButton = ({
 };
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#007bff",
+    backgroundColor: theme.primaryTextColor,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     transitionDuration: "200ms", // Works on Web
   },
   pressed: {
-    backgroundColor: "#044494", // Even darker color when pressed
+    backgroundColor: theme.secondaryTextColor, // Even darker color when pressed
   },
   buttonText: {
     color: "#fff",
