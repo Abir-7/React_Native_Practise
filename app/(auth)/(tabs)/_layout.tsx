@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons"; // Import FontAwesome icons
+import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 
 export default function TabLayout() {
   return (
@@ -10,7 +11,11 @@ export default function TabLayout() {
         options={{
           title: "Chats",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="comment" size={size} color={color} /> // Home icon
+            <FontAwesome
+              name="comment"
+              size={size}
+              color={theme.primaryTextColor}
+            /> // Home icon
           ),
         }}
       />
@@ -19,7 +24,11 @@ export default function TabLayout() {
         options={{
           title: "Groups",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="group" size={size} color={color} /> // Profile icon
+            <FontAwesome
+              name="group"
+              size={size}
+              color={theme.primaryTextColor}
+            /> // Profile icon
           ),
         }}
       />
@@ -28,7 +37,11 @@ export default function TabLayout() {
         options={{
           title: "Profile",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user" size={size} color={color} /> // Profile icon
+            <FontAwesome
+              name="user"
+              size={size}
+              color={theme.primaryTextColor}
+            /> // Profile icon
           ),
         }}
       />
