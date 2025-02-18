@@ -5,16 +5,26 @@ import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        sceneStyle: { backgroundColor: theme.primaryBgColor },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: "Chats",
-          tabBarIcon: ({ color, size }) => (
+          tabBarLabelStyle: {
+            color: theme.primaryTextColor, // Change the title color here
+          },
+          tabBarIcon: ({ color, size, focused }) => (
             <FontAwesome
               name="comment"
               size={size}
-              color={theme.primaryTextColor}
+              color={
+                focused ? theme.secondaryTextColor : theme.primaryTextColor
+              }
             /> // Home icon
           ),
         }}
@@ -23,11 +33,16 @@ export default function TabLayout() {
         name="group"
         options={{
           title: "Groups",
-          tabBarIcon: ({ color, size }) => (
+          tabBarLabelStyle: {
+            color: theme.primaryTextColor, // Change the title color here
+          },
+          tabBarIcon: ({ color, size, focused }) => (
             <FontAwesome
               name="group"
               size={size}
-              color={theme.primaryTextColor}
+              color={
+                focused ? theme.secondaryTextColor : theme.primaryTextColor
+              }
             /> // Profile icon
           ),
         }}
@@ -36,11 +51,16 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, size }) => (
+          tabBarLabelStyle: {
+            color: theme.primaryTextColor, // Change the title color here
+          },
+          tabBarIcon: ({ color, size, focused }) => (
             <FontAwesome
               name="user"
               size={size}
-              color={theme.primaryTextColor}
+              color={
+                focused ? theme.secondaryTextColor : theme.primaryTextColor
+              }
             /> // Profile icon
           ),
         }}
