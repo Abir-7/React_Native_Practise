@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import PageTitle from "@/components/PageTitle/PageTitle";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
@@ -16,7 +16,10 @@ const profile = () => {
     >
       <PageTitle title="User Profile"></PageTitle>
       <View>
-        <View style={styles.profileImage}></View>
+        <Image
+          src="https://us.123rf.com/450wm/anastasiiaz/anastasiiaz2305/anastasiiaz230501347/204097098-image-of-man-sitting-on-bench-in-the-city-with-his-head-down-and-hands-covering-his-face-appearing.jpg?ver=6"
+          style={styles.profileImage}
+        ></Image>
       </View>
 
       <View style={{ paddingLeft: 10, paddingRight: 10 }}>
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 20,
-    borderRadius: "50%",
+    borderRadius: 100,
     backgroundColor: theme.secondaryTextColor,
   },
   button: {

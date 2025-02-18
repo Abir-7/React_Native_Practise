@@ -3,6 +3,7 @@ import RoundImage from "@/components/RoundImage/RoundImage";
 import SearchField from "@/components/SearchField/SearchField";
 import SingleGroupUser from "@/components/SingleGroup_User/SingleGroupUser";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
+import { Link } from "expo-router";
 
 import { ScrollView, Text, TextInput, View, StyleSheet } from "react-native";
 
@@ -35,28 +36,31 @@ export default function Index() {
           }}
         >
           {arr.map((i) => (
-            <View
+            <Link
               key={i}
-              style={{
-                width: "auto",
-                marginLeft: 10,
-                marginRight: 4,
-              }}
+              style={{ marginLeft: 8, marginRight: 4 }}
+              href={"/(auth)/chat/1"}
             >
-              {/* user image */}
-
-              <RoundImage image=""></RoundImage>
-              <Text
+              <View
                 style={{
-                  width: "100%",
-                  textAlign: "center",
-
-                  color: theme.primaryTextColor,
+                  width: "auto",
                 }}
               >
-                name {/* Name    */}
-              </Text>
-            </View>
+                {/* user image */}
+
+                <RoundImage image=""></RoundImage>
+                <Text
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+
+                    color: theme.primaryTextColor,
+                  }}
+                >
+                  name {/* Name    */}
+                </Text>
+              </View>
+            </Link>
           ))}
         </ScrollView>
       </View>
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
   allUserChatView_1: {
     paddingRight: 2,
     paddingLeft: 2,
-
+    marginBottom: 2,
     height: 100, // Ensure the parent has a defined height
     gap: 10,
     paddingStart: 10,
