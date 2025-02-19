@@ -5,7 +5,9 @@ import { Pressable, Text, StyleSheet } from "react-native";
 
 export const CButton = ({
   onFormSubmit,
+  title = "Submit",
 }: {
+  title?: string;
   onFormSubmit: (data: FieldValues) => Promise<void>;
 }) => {
   const { handleSubmit } = useFormContext();
@@ -23,7 +25,7 @@ export const CButton = ({
       ]}
       onPress={handleSubmit(onSubmit)}
     >
-      <Text style={styles.buttonText}>Submit</Text>
+      <Text style={styles.buttonText}>{title}</Text>
     </Pressable>
   );
 };

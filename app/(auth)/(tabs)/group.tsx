@@ -3,6 +3,8 @@ import React from "react";
 import PageTitle from "@/components/PageTitle/PageTitle";
 import SearchField from "@/components/SearchField/SearchField";
 import SingleGroupUser from "@/components/SingleGroup_User/SingleGroupUser";
+import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 const Group = () => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -15,7 +17,20 @@ const Group = () => {
         height: "100%",
       }}
     >
-      <PageTitle title="Groups"></PageTitle>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <PageTitle title="Groups"></PageTitle>
+        <Link style={{ paddingRight: 10 }} href={"/(auth)/group/groupCreate"}>
+          {" "}
+          <Ionicons name="create-outline" size={22}></Ionicons>
+        </Link>
+      </View>
       <SearchField></SearchField>
 
       <View style={styles.allUserChatView}>

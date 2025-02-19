@@ -22,6 +22,18 @@ const EditProfile = () => {
     if (url) {
       setImage(url);
     }
+
+    if (url) {
+      const uriParts = url.split(".");
+      const fileType = uriParts[uriParts.length - 1];
+      const formData = new FormData();
+      formData.append("image", {
+        uri: url,
+        name: `profile.${fileType}`,
+        type: `image/${fileType}`,
+      } as any);
+      console.log(JSON.stringify(formData), "------------>>");
+    }
   };
 
   const onFormSubmit = async (data: FieldValues) => {
@@ -85,6 +97,9 @@ const EditProfile = () => {
             borderRadius: "50%",
             overflow: "hidden",
             backgroundColor: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Image
