@@ -5,28 +5,22 @@ import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 import CForm from "@/components/form/CForm";
 import CInput from "@/components/form/CInput";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import * as ImagePicker from "expo-image-picker";
+
 import { CButton } from "@/components/form/CButton";
 import { FieldValues } from "react-hook-form";
 import { useRouter } from "expo-router";
+import { imagePicker } from "@/lib/utils/imagePicker";
 
 const EditProfile = () => {
   const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
   const def =
     "https://as2.ftcdn.net/jpg/02/97/17/03/220_F_297170390_FqLV6jaNz8fxpofkL42pfhMbCGUlR1OX.jpg";
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images", "videos"],
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
 
-    if (!result.canceled) {
-      console.log(result?.assets[0].uri);
-      setImage(result.assets[0].uri);
+  const pickImage = async () => {
+    const url = await imagePicker();
+    if (url) {
+      setImage(url);
     }
   };
 
