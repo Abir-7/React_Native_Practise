@@ -8,10 +8,7 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Link } from "expo-router";
 import { useRef, useState } from "react";
 import { ScrollView, Text, View, StyleSheet, Alert } from "react-native";
-import {
-  GestureHandlerRootView,
-  LongPressGestureHandler,
-} from "react-native-gesture-handler";
+import { LongPressGestureHandler } from "react-native-gesture-handler";
 
 export default function Index() {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

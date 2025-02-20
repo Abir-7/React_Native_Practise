@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import { FontAwesome } from "@expo/vector-icons"; // Import FontAwesome icons
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons"; // Import FontAwesome icons
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 
 export default function TabLayout() {
@@ -47,6 +47,25 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="(userWall)"
+        options={{
+          title: "User Feed",
+          tabBarLabelStyle: {
+            color: theme.primaryTextColor, // Change the title color here
+          },
+          tabBarIcon: ({ color, size, focused }) => (
+            <MaterialIcons
+              name="feed"
+              size={size}
+              color={
+                focused ? theme.secondaryTextColor : theme.primaryTextColor
+              }
+            />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="profile"
         options={{
