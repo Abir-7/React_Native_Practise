@@ -5,17 +5,27 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from "react-native";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetScrollView,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import { Ionicons } from "@expo/vector-icons";
 
 const UserFeed = () => {
   const [refreshing, setRefreshing] = React.useState(false);
+
   const sheetRef = useRef<BottomSheet>(null);
+
   const snapPoints = ["100%"];
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
@@ -23,19 +33,28 @@ const UserFeed = () => {
     }, 2000);
   }, []);
   const handlePress = () => {
-    // Set the selected user and open the bottom sheet
-
     if (sheetRef.current) {
-      sheetRef.current.expand(); // Expand the sheet when long-pressed
+      sheetRef.current.expand();
+      setIsOpen(true);
     }
   };
+
+  const handleSheetPress = () => {
+    sheetRef.current?.close();
+    setIsOpen(false);
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <ScrollView
           contentContainerStyle={styles.scrollView}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            <RefreshControl
+              refreshing={refreshing}
+              enabled={isOpen == false}
+              onRefresh={onRefresh}
+            />
           }
         >
           <View
@@ -58,7 +77,7 @@ const UserFeed = () => {
             <Pressable
               onPress={() => handlePress()}
               style={({ pressed }) => ({
-                height: 30,
+                height: 35,
                 width: "auto",
                 flex: 1,
                 border: theme.primaryTextColor,
@@ -75,13 +94,54 @@ const UserFeed = () => {
 
           {/* Bottom Sheet */}
           <BottomSheet
+            snapPoints={snapPoints}
             handleIndicatorStyle={{ display: "none" }}
             index={-1}
             ref={sheetRef}
-            enablePanDownToClose={false}
+            enableDynamicSizing={false}
+            enableOverDrag={false}
           >
-            <BottomSheetView>
-              <Text>ssss</Text>
+            <BottomSheetView style={{ height: "100%" }}>
+              <View
+                style={{
+                  display: "flex",
+
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 4,
+                }}
+              >
+                <Ionicons
+                  onPress={handleSheetPress}
+                  name="arrow-back"
+                  style={{ marginLeft: 5 }}
+                  size={22}
+                />
+                <Text
+                  style={{ fontSize: 20, fontWeight: "500", marginBottom: 2 }}
+                >
+                  Create Post
+                </Text>
+              </View>
+              <BottomSheetScrollView>
+                <View style={{ height: "auto" }}>
+                  <TextInput
+                    scrollEnabled
+                    multiline
+                    style={{ minHeight: 70, textAlignVertical: "top" }}
+                  ></TextInput>
+                </View>
+                <View
+                  style={{ height: 300, width: "100%", backgroundColor: "red" }}
+                ></View>
+              </BottomSheetScrollView>
+              <View style={{ marginTop: "auto" }}>
+                <Ionicons
+                  name="arrow-back"
+                  style={{ marginLeft: 5 }}
+                  size={22}
+                />
+              </View>
             </BottomSheetView>
           </BottomSheet>
         </ScrollView>
@@ -100,5 +160,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 3,
     paddingRight: 3,
+  },
+  textarea: {
+    // Adjust the height as needed
+    height: "80%",
+    textAlignVertical: "top",
+    padding: 10,
+    backgroundColor: "red",
+    width: "100%", // You can adjust the width to fit your design
   },
 });
