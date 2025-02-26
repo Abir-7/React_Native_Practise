@@ -19,6 +19,7 @@ import BottomSheet, {
 import { Ionicons } from "@expo/vector-icons";
 
 import { imagePicker } from "@/lib/utils/imagePicker";
+import UserDay from "@/components/UserWall/UserDay";
 
 const UserFeed = () => {
   const [text, setText] = useState("");
@@ -135,6 +136,22 @@ const UserFeed = () => {
             ></Ionicons>
           </View>
 
+          <View>
+            <View
+              style={{
+                width: "100%",
+                height: 10,
+                borderWidth: 0.5,
+                borderLeftWidth: 0,
+                borderRightWidth: 0,
+                marginBottom: 10,
+                marginTop: 10,
+                borderColor: theme.secondaryTextColor,
+              }}
+            ></View>
+            {/* USer day */}
+            <UserDay></UserDay>
+          </View>
           {/* Bottom Sheet */}
           <BottomSheet
             snapPoints={snapPoints}
