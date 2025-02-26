@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   Pressable,
   RefreshControl,
@@ -8,7 +9,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 import BottomSheet, {
@@ -17,9 +18,12 @@ import BottomSheet, {
 } from "@gorhom/bottom-sheet";
 import { Ionicons } from "@expo/vector-icons";
 
-const UserFeed = () => {
-  const [refreshing, setRefreshing] = React.useState(false);
+import { imagePicker } from "@/lib/utils/imagePicker";
 
+const UserFeed = () => {
+  const [text, setText] = useState("");
+  const [refreshing, setRefreshing] = React.useState(false);
+  const [images, setImages] = useState<string[]>([]);
   const sheetRef = useRef<BottomSheet>(null);
 
   const snapPoints = ["100%"];
@@ -38,10 +42,43 @@ const UserFeed = () => {
       setIsOpen(true);
     }
   };
-
   const handleSheetPress = () => {
-    sheetRef.current?.close();
-    setIsOpen(false);
+    if (images.length > 0 || text) {
+      Alert.alert(
+        "Discard Save?", // Title
+        "Are you sure you want to discard your changes?", // Message
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Discard",
+            style: "destructive",
+            onPress: () => {
+              sheetRef.current?.close();
+              setIsOpen(false);
+              setImages([]);
+              setText("");
+            },
+          },
+        ],
+        { cancelable: true }
+      );
+    } else {
+      sheetRef.current?.close();
+      setIsOpen(false);
+    }
+  };
+
+  const onImageClick = async () => {
+    const imageurl = await imagePicker(true, false);
+
+    if (sheetRef.current && imageurl) {
+      setImages(imageurl);
+      sheetRef.current.expand();
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -90,6 +127,12 @@ const UserFeed = () => {
             >
               <Text style={{ marginLeft: 5 }}> What's on your mind?</Text>
             </Pressable>
+            <Ionicons
+              onPress={onImageClick}
+              name="images-sharp"
+              size={22}
+              color={theme.primaryTextColor}
+            ></Ionicons>
           </View>
 
           {/* Bottom Sheet */}
@@ -124,23 +167,60 @@ const UserFeed = () => {
                 </Text>
               </View>
               <BottomSheetScrollView>
-                <View style={{ height: "auto" }}>
+                <View
+                  style={{
+                    minHeight: 70,
+                    backgroundColor: "#fff", // Ensure background fossssssssr visibility
+                    borderRadius: 8, // Optional rounded corners
+                    padding: 10, // Padding inside the view
+                    shadowColor: theme.secondaryTextColor,
+                    shadowOffset: { width: 0, height: 4 }, // Shadow for iOS
+                    shadowOpacity: 0.3, // Adjust opacity
+                    shadowRadius: 5, // Soft shadow for iOS
+                    elevation: 1, // Shadow for Android
+                  }}
+                >
                   <TextInput
+                    onChangeText={setText}
+                    value={text}
                     scrollEnabled
                     multiline
                     style={{ minHeight: 70, textAlignVertical: "top" }}
+                    placeholder=" What's on your mind?"
                   ></TextInput>
                 </View>
-                <View
-                  style={{ height: 300, width: "100%", backgroundColor: "red" }}
-                ></View>
+                <View>
+                  {images.length > 0 && (
+                    <Image
+                      style={{
+                        width: "auto",
+                        minHeight: "100%",
+                        objectFit: "contain",
+                      }}
+                      width={200}
+                      height={300}
+                      source={{ uri: images[0] }}
+                    />
+                  )}
+                </View>
               </BottomSheetScrollView>
-              <View style={{ marginTop: "auto" }}>
+              <View
+                style={{
+                  marginTop: "auto",
+                  borderTopWidth: 0.2,
+                  height: 40,
+                  borderTopColor: theme.secondaryTextColor,
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingLeft: 10,
+                }}
+              >
                 <Ionicons
-                  name="arrow-back"
-                  style={{ marginLeft: 5 }}
+                  onPress={onImageClick}
+                  name="images-sharp"
                   size={22}
-                />
+                  color={theme.primaryTextColor}
+                ></Ionicons>
               </View>
             </BottomSheetView>
           </BottomSheet>
