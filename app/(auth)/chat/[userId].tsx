@@ -65,8 +65,8 @@ const Chat = () => {
 
   const handleSendMessage = async (isImage: boolean) => {
     if (isImage) {
-      const url = await imagePicker(false);
-      if (url) sendMessage(true, url);
+      const urls = await imagePicker(false);
+      if (urls && urls.length > 0) sendMessage(true, urls[0]);
     } else {
       sendMessage(false, message);
     }
