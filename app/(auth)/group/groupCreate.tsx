@@ -2,13 +2,13 @@ import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
-import { Redirect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import PageTitle from "@/components/PageTitle/PageTitle";
 import CForm from "@/components/form/CForm";
 import CInput from "@/components/form/CInput";
 import { CButton } from "@/components/form/CButton";
 import { FieldValues } from "react-hook-form";
-import Checkbox from "expo-checkbox";
+import { Checkbox } from "react-native-paper";
 
 const CreateGroup = () => {
   const router = useRouter();
@@ -199,10 +199,8 @@ const CreateGroup = () => {
             </View>
             <Checkbox
               color={theme.primaryTextColor}
-              value={checkedState[index]}
-              onValueChange={(newValue) =>
-                handleCheckboxChange(index, newValue)
-              }
+              status={checkedState[index] ? "checked" : "unchecked"}
+              onPress={() => handleCheckboxChange(index, !checkedState[index])}
             />
           </View>
         ))}

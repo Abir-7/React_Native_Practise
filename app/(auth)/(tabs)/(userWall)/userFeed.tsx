@@ -166,96 +166,96 @@ const UserFeed = () => {
             ></View>
             <UserWall></UserWall>
           </View>
-          {/* Bottom Sheet */}
-          <BottomSheet
-            snapPoints={snapPoints}
-            handleIndicatorStyle={{ display: "none" }}
-            index={-1}
-            ref={sheetRef}
-            enableDynamicSizing={false}
-            enableOverDrag={false}
-          >
-            <BottomSheetView style={{ height: "100%" }}>
-              <View
-                style={{
-                  display: "flex",
-
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 4,
-                }}
-              >
-                <Ionicons
-                  onPress={handleSheetPress}
-                  name="arrow-back"
-                  style={{ marginLeft: 5 }}
-                  size={22}
-                />
-                <Text
-                  style={{ fontSize: 20, fontWeight: "500", marginBottom: 2 }}
-                >
-                  Create Post
-                </Text>
-              </View>
-              <BottomSheetScrollView>
-                <View
-                  style={{
-                    minHeight: 70,
-                    backgroundColor: "#fff", // Ensure background fossssssssr visibility
-                    borderRadius: 8, // Optional rounded corners
-                    padding: 10, // Padding inside the view
-                    shadowColor: theme.secondaryTextColor,
-                    shadowOffset: { width: 0, height: 4 }, // Shadow for iOS
-                    shadowOpacity: 0.3, // Adjust opacity
-                    shadowRadius: 5, // Soft shadow for iOS
-                    elevation: 1, // Shadow for Android
-                  }}
-                >
-                  <TextInput
-                    onChangeText={setText}
-                    value={text}
-                    scrollEnabled
-                    multiline
-                    style={{ minHeight: 70, textAlignVertical: "top" }}
-                    placeholder=" What's on your mind?"
-                  ></TextInput>
-                </View>
-                <View>
-                  {images.length > 0 && (
-                    <Image
-                      style={{
-                        width: "auto",
-                        minHeight: "100%",
-                        objectFit: "contain",
-                      }}
-                      width={200}
-                      height={300}
-                      source={{ uri: images[0] }}
-                    />
-                  )}
-                </View>
-              </BottomSheetScrollView>
-              <View
-                style={{
-                  marginTop: "auto",
-                  borderTopWidth: 0.2,
-                  height: 40,
-                  borderTopColor: theme.secondaryTextColor,
-                  display: "flex",
-                  justifyContent: "center",
-                  paddingLeft: 10,
-                }}
-              >
-                <Ionicons
-                  onPress={onImageClick}
-                  name="images-sharp"
-                  size={22}
-                  color={theme.primaryTextColor}
-                ></Ionicons>
-              </View>
-            </BottomSheetView>
-          </BottomSheet>
         </ScrollView>
+        {/* Bottom Sheet */}
+        <BottomSheet
+          snapPoints={snapPoints}
+          handleIndicatorStyle={{ display: "none" }}
+          index={-1}
+          ref={sheetRef}
+          enableDynamicSizing={false}
+          enableOverDrag={false}
+        >
+          <BottomSheetView style={{ height: "100%" }}>
+            <View
+              style={{
+                display: "flex",
+
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              <Ionicons
+                onPress={handleSheetPress}
+                name="arrow-back"
+                style={{ marginLeft: 5 }}
+                size={22}
+              />
+              <Text
+                style={{ fontSize: 20, fontWeight: "500", marginBottom: 2 }}
+              >
+                Create Post
+              </Text>
+            </View>
+            <BottomSheetScrollView>
+              <View
+                style={{
+                  minHeight: 70,
+                  backgroundColor: "#fff", // Ensure background fossssssssr visibility
+                  borderRadius: 8, // Optional rounded corners
+                  padding: 10, // Padding inside the view
+                  shadowColor: theme.secondaryTextColor,
+                  shadowOffset: { width: 0, height: 4 }, // Shadow for iOS
+                  shadowOpacity: 0.3, // Adjust opacity
+                  shadowRadius: 5, // Soft shadow for iOS
+                  elevation: 1, // Shadow for Android
+                }}
+              >
+                <TextInput
+                  onChangeText={setText}
+                  value={text}
+                  scrollEnabled
+                  multiline
+                  style={{ minHeight: 70, textAlignVertical: "top" }}
+                  placeholder=" What's on your mind?"
+                ></TextInput>
+              </View>
+              <View>
+                {images.length > 0 && (
+                  <Image
+                    style={{
+                      width: "auto",
+                      minHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                    width={200}
+                    height={300}
+                    source={{ uri: images[0] }}
+                  />
+                )}
+              </View>
+            </BottomSheetScrollView>
+            <View
+              style={{
+                marginTop: "auto",
+                borderTopWidth: 0.2,
+                height: 40,
+                borderTopColor: theme.secondaryTextColor,
+                display: "flex",
+                justifyContent: "center",
+                paddingLeft: 10,
+              }}
+            >
+              <Ionicons
+                onPress={onImageClick}
+                name="images-sharp"
+                size={22}
+                color={theme.primaryTextColor}
+              ></Ionicons>
+            </View>
+          </BottomSheetView>
+        </BottomSheet>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -268,9 +268,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    flex: 1,
     paddingLeft: 3,
     paddingRight: 3,
+
+    flexDirection: "column",
+    display: "flex",
+
+    padding: 1,
   },
   textarea: {
     // Adjust the height as needed
