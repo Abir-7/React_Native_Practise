@@ -16,7 +16,6 @@ const UserWall = () => {
             display: "flex",
             flexDirection: "column",
             gap: 5,
-
             backgroundColor: "white", // Required for shadow to be visible on iOS
             shadowColor: "#000",
             shadowOffset: { width: 0, height: 1 },
@@ -74,13 +73,24 @@ const UserWall = () => {
             </View>
           </View>
           <View>
-            <View
-              style={{
-                width: "100%",
-                height: 100,
-                backgroundColor: theme.secondaryTextColor,
-              }}
-            ></View>
+            {
+              <View
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 3,
+                }}
+              >
+                <Text style={{ marginLeft: 2 }}>Hi How are u </Text>
+                <Image
+                  width={200}
+                  height={200}
+                  style={{ width: "auto", height: 300 }}
+                  src="https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455_640.jpg"
+                ></Image>
+              </View>
+            }
           </View>
           <View
             style={{

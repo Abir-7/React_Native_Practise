@@ -1,14 +1,32 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import PendingRequestList from "./pendingRequestList";
-import SendRequest from "./userFeed";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import SearchUser from "./searchUser";
-import { theme } from "@/lib/ThemeProvider/ThemeProvider";
+import { useState, useEffect } from "react";
+import { View, Text } from "react-native";
 import UserFeed from "./userFeed";
+import SearchUser from "./searchUser";
+import PendingRequestList from "./pendingRequestList";
+import Notification from "./notification";
+import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function AuthLayout() {
+  const [notificationCount, setNotificationCount] = useState(0);
+
+  // Simulating API Call or Event Listener for New Notifications
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      // Replace with actual API call or socket event listener
+      const newCount = 5; // Example count from API
+      setNotificationCount(newCount);
+    };
+
+    fetchNotifications();
+
+    // If using WebSocket or Push Notifications, set up a listener
+    // return () => { cleanup logic if needed }
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -62,6 +80,44 @@ export default function AuthLayout() {
           tabBarLabel: () => null,
         }}
         component={PendingRequestList}
+      />
+
+      <Tab.Screen
+        name="Notification"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Ionicons
+                name="notifications"
+                size={22}
+                color={
+                  focused ? theme.secondaryTextColor : theme.primaryTextColor
+                }
+              />
+              {notificationCount > 0 && (
+                <View
+                  style={{
+                    position: "absolute",
+                    right: -5,
+                    top: -5,
+                    backgroundColor: "red",
+                    borderRadius: 10,
+                    width: 16,
+                    height: 16,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 10 }}>
+                    {notificationCount}
+                  </Text>
+                </View>
+              )}
+            </View>
+          ),
+          tabBarLabel: () => null,
+        }}
+        component={Notification}
       />
     </Tab.Navigator>
   );
