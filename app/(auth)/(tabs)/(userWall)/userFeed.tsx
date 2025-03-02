@@ -19,7 +19,7 @@ import BottomSheet, {
 import { Ionicons } from "@expo/vector-icons";
 
 import { imagePicker } from "@/lib/utils/imagePicker";
-import UserDay from "@/components/UserWall/UserDay";
+import UserDay from "@/components/UserWall/story/UserDay";
 import UserWall from "@/components/UserWall/UserWall";
 
 const UserFeed = () => {
@@ -150,7 +150,7 @@ const UserFeed = () => {
                 borderColor: theme.secondaryTextColor,
               }}
             ></View>
-            {/* USer day */}
+
             <UserDay></UserDay>
             <View
               style={{

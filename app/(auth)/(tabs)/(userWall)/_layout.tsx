@@ -13,11 +13,9 @@ const Tab = createMaterialTopTabNavigator();
 export default function AuthLayout() {
   const [notificationCount, setNotificationCount] = useState(0);
 
-  // Simulating API Call or Event Listener for New Notifications
   useEffect(() => {
     const fetchNotifications = async () => {
-      // Replace with actual API call or socket event listener
-      const newCount = 5; // Example count from API
+      const newCount = 5;
       setNotificationCount(newCount);
     };
 

@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const DayView = () => {
-  return <View></View>;
+const userStories = () => {
+  return (
+    <View>
+      <Text>userStories</Text>
+    </View>
+  );
 };
 
-export default DayView;
+export default userStories;
 
 const styles = StyleSheet.create({});

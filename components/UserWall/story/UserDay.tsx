@@ -3,6 +3,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
 import { ScrollView } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 const UserDay = () => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -45,29 +46,30 @@ const UserDay = () => {
         </View>
 
         {arr.map((i) => (
-          <ImageBackground
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsc55IINDH5RiwPABwXh5uu0P1iKC1PKEluHR9K2MZLXlikVQTC2tKNonynH0v3dkoDQY&usqp=CAU"
-            key={i}
-            style={styles.background}
-          >
-            <View style={styles.userProfileIcon}>
-              <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT--5I7-AM_uEYNgG35o6hG1E-jtlDr8pbZMki7yeedqDFfi1LmXqm-nmScen-JWPX2qI8&usqp=CAU"
-                style={{ width: "100%", height: "100%", borderRadius: 100 }}
-              ></Image>
-            </View>
-
-            <Text
-              style={{
-                marginTop: "auto",
-                marginBottom: 5,
-                marginLeft: 9,
-                color: theme.primaryBgColor,
-              }}
+          <Link key={i} href={"/(auth)/userStory/userStories"}>
+            <ImageBackground
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsc55IINDH5RiwPABwXh5uu0P1iKC1PKEluHR9K2MZLXlikVQTC2tKNonynH0v3dkoDQY&usqp=CAU"
+              style={styles.background}
             >
-              Name
-            </Text>
-          </ImageBackground>
+              <View style={styles.userProfileIcon}>
+                <Image
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT--5I7-AM_uEYNgG35o6hG1E-jtlDr8pbZMki7yeedqDFfi1LmXqm-nmScen-JWPX2qI8&usqp=CAU"
+                  style={{ width: "100%", height: "100%", borderRadius: 100 }}
+                ></Image>
+              </View>
+
+              <Text
+                style={{
+                  marginTop: "auto",
+                  marginBottom: 5,
+                  marginLeft: 9,
+                  color: theme.primaryBgColor,
+                }}
+              >
+                Name
+              </Text>
+            </ImageBackground>
+          </Link>
         ))}
       </ScrollView>
     </View>

@@ -14,6 +14,7 @@ export default function AuthLayout() {
       <Stack.Screen name="chat" options={{ headerShown: false }} />
       <Stack.Screen name="editProfile" options={{ headerShown: false }} />
       <Stack.Screen name="group" options={{ headerShown: false }} />
+      <Stack.Screen name="userStory" options={{ headerShown: false }} />
     </Stack>
   );
 }
