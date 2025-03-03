@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
 import * as Progress from "react-native-progress";
 import { theme } from "@/lib/ThemeProvider/ThemeProvider";
+import { Redirect, useRouter } from "expo-router";
 
 const UserStories = () => {
-  const userDays = [1, 2, 3]; // Example user days
+  const router = useRouter();
+  const userDays = [
+    "https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455_640.jpg",
+    "https://media.istockphoto.com/id/1398622058/vector/silhouette-clip-art-of-a-man-gazing-at-a-suspiciously-shining-full-moon.jpg?s=612x612&w=0&k=20&c=dGITqVVQc5vqN0ZWzGU4jM_Jm1xK8BB5gJMAlzyXf54=",
+  ]; // Example user days
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -28,11 +33,7 @@ const UserStories = () => {
   }, [currentDayIndex]);
 
   if (currentDayIndex >= userDays.length) {
-    return (
-      <View style={styles.container}>
-        <Text>All stories viewed!</Text>
-      </View>
-    );
+    return <Redirect href={"/(auth)/(tabs)/(userWall)/userFeed"}></Redirect>;
   }
 
   return (
@@ -75,7 +76,7 @@ const UserStories = () => {
           width={100}
           height={100}
           source={{
-            uri: `https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455_640.jpg`,
+            uri: userDays[currentDayIndex],
           }} // Replace with your image URL
           style={styles.image}
         />
